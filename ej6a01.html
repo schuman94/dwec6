@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <div>
+      <label for="nombre">Nombre: </label>
+      <input type="text" name="nombre" id="nombre" class="campo"> 
+    </div>
+    <br>
+
+    <div>
+      <label for="cliente">Nota Cliente: </label>
+      <input type="text" name="cliente" id="cliente" class="campo">
+    </div>
+    <br>
+
+    <div>
+      <label for="diseño">Nota Diseño: </label>
+      <input type="text" name="diseño" id="diseño" class="campo">
+    </div>
+    <br>
+
+    <div>
+      <label for="servidor">Nota Servidor: </label>
+      <input type="text" name="servidor" id="servidor" class="campo">
+    </div>
+    <br>
+
+    <input type="button" value="Enviar" id="enviar">
+    <input type="button" value="Mostrar Tabla" id="mostrar">
+  </form>
+
+  <script>
+    document.getElementById("enviar").addEventListener('click', registrar);
+    document.getElementById("mostrar").addEventListener('click', crearTabla);
+    let multidimensional = [];
+
+    function registrar() {
+      let alumnos = document.getElementsByClassName("campo");
+      let datos = Array.from(alumnos);
+      let arr = [];
+      for (let i of datos) {
+        arr.push(i.value);
+      }
+      multidimensional.push(arr);
+      console.log(multidimensional);
+    }
+
+    function crearTabla() {
+      let tabla = document.createElement("table");
+
+      //Creamos la cabecera
+      let cabeceras = ["Nombre", "Cliente", "Diseño", "Servidor"];
+      let cabecera = document.createElement("thead");
+      let filaCabecera = document.createElement("tr");
+
+      for (i of cabeceras) {
+        let celda = document.createElement("td");
+        celda.textContent = i;
+        filaCabecera.appendChild(celda);
+      }
+
+      cabecera.appendChild(filaCabecera);
+      tabla.appendChild(cabecera);
+
+      // Creamos el cuerpo de la tabla
+      let tbody = document.createElement("tbody");
+      for (alumno in multidimensional) {
+        let fila = document.createElement("tr");
+        for (valor in alumno) {
+          let celda = document.createElement("td");
+          celda.textContent = valor;
+          console.log("Insertamos " + valor);
+          fila.appendChild(celda);
+        }
+        tbody.appendChild(fila);
+      }
+      tabla.appendChild(tbody);
+
+
+      //Por ultimo insertamos la tabla en el body
+      document.body.appendChild(tabla);
+      tabla.setAttribute("border", "1");
+
+    }
+
+    //NO FUNCIONA
+  </script>
+  
+</body>
+</html>
