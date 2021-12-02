@@ -53,6 +53,17 @@
     }
 
     function crearTabla() {
+      //Removemos si existia ya una
+      /* NO FUNCIONA EL ELIMINAR
+      let antigua = document.getElementsByTagName("table");
+      let tablaAntigua;
+      if (antigua.length > 1) {
+        tablaAntigua = antigua[0];
+        document.body.removeChild(tablaAntigua);
+      }
+      */
+
+      //Creamos una nueva tabla
       let tabla = document.createElement("table");
 
       //Creamos la cabecera
@@ -71,9 +82,9 @@
 
       // Creamos el cuerpo de la tabla
       let tbody = document.createElement("tbody");
-      for (alumno in multidimensional) {
+      for (alumno of multidimensional) {
         let fila = document.createElement("tr");
-        for (valor in alumno) {
+        for (valor of alumno) {
           let celda = document.createElement("td");
           celda.textContent = valor;
           console.log("Insertamos " + valor);
@@ -89,8 +100,6 @@
       tabla.setAttribute("border", "1");
 
     }
-
-    //NO FUNCIONA
   </script>
   
 </body>
