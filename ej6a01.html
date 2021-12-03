@@ -32,7 +32,7 @@
     </div>
     <br>
 
-    <input type="button" value="Enviar" id="enviar">
+    <input type="button" value="Añadir" id="enviar">
     <input type="button" value="Mostrar Tabla" id="mostrar">
   </form>
 
@@ -53,18 +53,16 @@
     }
 
     function crearTabla() {
-      //Removemos si existia ya una
-      /* NO FUNCIONA EL ELIMINAR
-      let antigua = document.getElementsByTagName("table");
-      let tablaAntigua;
-      if (antigua.length > 1) {
-        tablaAntigua = antigua[0];
-        document.body.removeChild(tablaAntigua);
+      //Removemos si ya existia una
+      let mitabla = document.getElementById("mitabla");
+      if (mitabla) {
+        mitabla.remove();
       }
-      */
-
-      //Creamos una nueva tabla
+      
+      //Creamos la tabla
       let tabla = document.createElement("table");
+      tabla.setAttribute("border", "1");
+      tabla.setAttribute("id", "mitabla");
 
       //Creamos la cabecera
       let cabeceras = ["Nombre", "Cliente", "Diseño", "Servidor"];
@@ -94,11 +92,8 @@
       }
       tabla.appendChild(tbody);
 
-
       //Por ultimo insertamos la tabla en el body
       document.body.appendChild(tabla);
-      tabla.setAttribute("border", "1");
-
     }
   </script>
   
